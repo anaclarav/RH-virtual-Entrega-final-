@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RH Virtual </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+</head>
+
+<body class="h-100">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                
+                                    <a class="text-center"> <h4>RH Virtual</h4></a>
+        
+                                <form class="mt-5 mb-5 login-input" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  placeholder="Usuário" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus id="id_username" required>
+                                        <span class="helptext"> Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control"  placeholder="Senha" required  name="password1" autocomplete="new-password" id="id_password1">
+                                        <span class="helptext">Sua senha não pode ser muito parecida com o resto das suas informações pessoais.<br> Sua senha precisa conter pelo menos 8 caracteres.<br>Sua senha não pode ser uma senha comumente utilizada.<br>Sua senha não pode ser inteiramente numérica.</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Confirme a senha" name="password2" autocomplete="new-password" required id="id_password2">
+                                        <span class="helptext">Informe a mesma senha informada anteriormente, para verificação.</span>
+                                    </div>
+                                    <button class="btn login-form__btn submit w-100" type="submit">Registrar</button>
+                                </form>
+                                    <p class="mt-5 login-form__footer">Já possui uma conta? <a href="/accounts/login/" class="text-primary"> Faça o login </a> </p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+</body>
+</html>
+
+
+
+
+

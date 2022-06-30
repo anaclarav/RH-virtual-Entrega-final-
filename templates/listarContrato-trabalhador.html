@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RH Virtual </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">    
+            <div class="header-content clearfix">
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <img src="/{{a.imagem}}" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile   dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="/perfil-trabalhador/meu-perfil/{{a.id}}"><i class="icon-user"></i> <span>Meu perfil</span></a>
+                                        </li>
+                                        <li><a href="/accounts/logout"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="/contrato/listar/" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Meus contratos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body" style="padding-bottom: 0px;">
+                            <div class="card-title">
+                                <h4>Filtrar</h4>
+                            </div>
+                            <form method="GET" id="search-form"> 
+                                <div class="form-group">
+                                    <label class="radio-inline mr-3">
+                                        <input type="radio"  name="status_contrato" value="Em aberto"> Em aberto</label>
+                                    <label class="radio-inline mr-3">
+                                        <input type="radio" name="status_contrato" value="Finalizado"> Finalizado</label>
+                                    <label class="radio-inline mr-3">
+                                        <input type="radio"  name="status_contrato" value="Cancelado"> Cancelado</label>
+                                    <label class="radio-inline">
+                                        <div class="text-right">
+                                            <button class="btn btn-dark m-b-0" id="search-btn">Buscar</button>
+                                        </div>
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Seus contratos</h4>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Titulo</th>
+                                        <th>Status</th>
+                                        <th>Data</th>
+                                        <th>Cliente</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if Contrato %}
+                                        {% for i in Contrato  %}
+                                            <tr>
+                                                <td>{{i.titulo}}</td>
+                                                {% if i.status_contrato == "Cancelado"%}
+                                                    <td><span class="badge badge-danger px-2">{{i.status_contrato}}</span></td>
+                                                {%elif i.status_contrato == "Finalizado"%}
+                                                    <td><span class="badge badge-primary px-2">{{i.status_contrato}}</span></td>
+                                                {%else%}
+                                                    <td><span class="badge badge-success px-2">{{i.status_contrato}}</span></td>
+                                                {%endif%}
+                                                <td>{{i.created_at}}</td>
+                                                <td class="color-primary">{{i.cliente}}</td>
+                                                <td><a href="/contrato/detail/{{i.id}}" data-toggle="tooltip" data-placement="top" title="Ver"><i class="fa fa-eye color-muted m-r-5"></i> </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# card -->
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+    
+
+</body>
+
+</html>
+
+

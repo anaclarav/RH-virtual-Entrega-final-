@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RH Virtual </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <img src=" /{{a.imagem}}" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile   dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="/perfil-cliente/meu-perfil/{{a.id}}"><i class="icon-user"></i> <span>Meu perfil</span></a>
+                                        </li>
+                                        <li><a href="/accounts/logout"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a class="has-arrow" href="/listar/" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Buscar</span>
+                        </a>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="/contrato/listar/" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Meus contratos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+            <div class="login-form-bg h-100">
+                <div class="container h-100">
+                    <div class="row justify-content-center h-100">
+                        <div class="col-xl-6">
+                            <div class="form-input-content">
+                                <div class="card login-form mb-0">
+                                    <div class="card-body pt-5">
+                                        <a class="text-center"> <h4>Edite o seu perfil</h4></a> <br>
+                                            <div class="form-validation">
+                                                <form class="form-valide" enctype="multipart/form-data"  method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_nome">Nome: <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_nome" name="nome" maxlength="100" value="{{Cliente.nome}}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_sobrenome">Sobrenome: <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_sobrenome" name="sobrenome" maxlength="200" required value="{{Cliente.sobrenome}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_cep">CEP: <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_cep" name="cep" value="{{Cliente.cep}}" required maxlength="8" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_rua">Rua:  <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_rua" name="rua" value="{{Cliente.rua}}" required maxlength="300">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_numero">Número: <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_numero" name="numero" value="{{Cliente.numero}}" required maxlength="10">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_bairro">Bairro: <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_bairro" name="bairro" value="{{Cliente.bairro}}" required maxlength="300">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_telefone">Telefone: <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control" id="id_telefone" name="telefone" value="{{Cliente.telefone}}" required maxlength="15" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label" for="id_imagem">Imagem de Perfil: 
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="file" class="form-control" id="id_imagem" name="imagem">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-8 ml-auto">
+                                                            <button type="submit" class="btn btn-primary">Finalizar</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+</body>
